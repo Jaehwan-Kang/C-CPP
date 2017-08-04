@@ -80,7 +80,7 @@
 //  return 0;
 //}
 
-
+/*
 // 01-2
 void swap(int * a, int * b)
 {
@@ -121,10 +121,77 @@ int main(void)
 	std::cout<<dbl1<<' '<<dbl2<<std::endl;
 
 	return 0;
-	/* 
-	[실행 예]
-	30 20
-	Z A
-	5.555 1.111
-	*/
-}
+
+//	[실행 예]
+//	30 20
+//	Z A
+//	5.555 1.111
+
+}  */
+
+// 02-1-3
+//using namespace std;
+//
+//void SwapPointer(int *(&pref1), int *(&pref2))
+//{
+//	int * ptr = pref1;
+//	pref1 = pref2;
+//	pref2 = ptr;
+//}
+//
+//int main(void)
+//{
+//	int num1 = 5;
+//	int *ptr1 = &num1;
+//
+//	int num2 = 10;
+//	int *ptr2 = &num2;
+//
+//	cout<<*ptr1<<endl;
+//	cout<<*ptr2<<endl;
+//
+//	SwapPointer(ptr1, ptr2);
+//	cout<<*ptr1<<endl;
+//	cout<<*ptr2<<endl;
+//
+//	return 0;
+//
+//}
+
+// // 03-1
+// using namespace std;
+
+// struct Point
+// {
+//     int xpos;
+//     int ypos;
+
+//     void MovePos(int x, int y)
+//     {
+//         xpos += x;
+//         ypos += y;
+//     }
+//     void AddPoint(const Point &pos)
+//     {
+//         xpos += pos.xpos;
+//         ypos += pos.ypos;
+//     }
+//     void ShowPosition()
+//     {
+//         cout<<"["<<xpos<<", "<<ypos<<"]"<<endl;
+//     }
+// };
+
+//  int main(void)
+// {
+//     Point pos1 = {12, 4};
+//     Point pos2 = {20, 30};
+
+//     pos1.MovePos(-7, 10);
+//     pos1.ShowPosition();
+
+//     pos1.AddPoint(pos2);
+//     pos1.ShowPosition();
+
+//     return 0;
+// }
