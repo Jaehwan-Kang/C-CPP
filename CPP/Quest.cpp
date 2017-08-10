@@ -1,5 +1,6 @@
 //#include "stdafx.h"
 #include <iostream>
+#include <cstring>
 
 
 // 01-1-1
@@ -309,3 +310,333 @@ int main(void)
 //     return 0;
 // }
 
+// 07-2-1
+// using namespace std;
+// class Rectangle
+// {
+// private:
+// 	int width;
+// 	int height;
+// public:
+// 	Rectangle(int wid, int hei)	
+// 		: width(wid), height(hei)
+// 	{ }
+// 	void ShowAreaInfo()
+// 	{
+// 		cout<<"면적 : "<<width * height<<endl;
+// 	}
+
+// };
+
+// class Square : public Rectangle
+// {
+// public:
+// 	Square(int side) 
+// 		: Rectangle(side, side)
+// 	{ }
+// };
+
+// int main(void)
+// {
+// 	Rectangle rec(4, 3);
+// 	rec.ShowAreaInfo();
+
+// 	Square sqr(7);
+// 	sqr.ShowAreaInfo();
+// 	return 0;
+// }
+// /* 
+// 	 실행 예   
+// 	면적 : 12
+// 	면적 : 49 
+// */
+
+// // 07-2-2
+// using namespace std;
+// class Book
+// {
+// private:
+// 	char* title;
+// 	char* isbn;
+// 	int price;
+// public:
+// 	Book(char* tt, char* ii, int pp)
+// 		: price(pp)
+// 	{
+// 		this->title = new char[strlen(tt) + 1];
+// 		this->isbn = new char[strlen(ii) + 1];
+// 		strcpy(this->title, tt);
+// 		strcpy(this->isbn, ii);
+// 	}
+
+// 	void ShowBookInfo()
+// 	{
+// 		cout<<"제목 : "<<title<<endl;
+// 		cout<<"ISBN : "<<isbn<<endl;
+// 		cout<<"가격: "<<price<<endl;
+// 	}
+// 	~Book()
+// 	{
+// 		delete []title;
+// 		delete []isbn;
+// 	}
+// };
+
+// class Ebook : public Book
+// {
+// private:
+// 	char* DRMKey;
+// public:
+// 	Ebook(char* tt, char* ii, int pp, char* key)
+// 		: Book(tt, ii, pp)
+// 	{
+// 		DRMKey = new char[strlen(key) + 1];
+// 		strcpy(DRMKey, key);
+// 	}
+
+// 	void ShowEBookInfo()
+// 	{
+// 		ShowBookInfo();
+// 		cout<<"인증키"<<DRMKey<<endl;
+// 	}
+
+// 	~Ebook()
+// 	{
+// 		delete []DRMKey;
+// 	}
+// };
+
+// int main(void)
+// {
+// 	Book book("좋은 C++", "555-12345-890-0", 20000);
+// 	book.ShowBookInfo();
+// 	cout<<endl;
+// 	Ebook ebook("좋은 C++ ebook", "555-12345-890-1", 10000, "fdx9w0i8kiw");
+// 	ebook.ShowEBookInfo();
+// 	return 0;
+// 	/*
+// 	실행 예
+// 	제목 : 좋은 C++
+// 	ISBN : 555-12345-890-0
+// 	가격: 20000
+	
+// 	제목 : 좋은 C++ ebook
+// 	ISBN : 555-12345-890-1
+// 	가격: 20000
+// 	인증키 : fdx9w0i8kiw
+// 	*/
+// }
+
+// 08-01
+using namespace std;
+
+// 최상위 고용인 클래스
+class Employee
+{
+private:
+	char name[100];
+public:
+	Employee(char * name)
+	{
+		strcpy(this->name, name);
+	}
+	void ShowYourName() const
+	{
+		cout<<"name : "<<name<<endl;
+	}
+
+	virtual int GetPay() const = 0;
+	virtual void ShowSalaryInfo() const = 0;
+};
+
+// 고용인의 유도클래스(정규직)
+class PermanentWorker : public Employee
+{
+private:
+	int salary;
+public:
+	PermanentWorker(char * name, int money)
+		: Employee(name), salary(money)
+	{}
+
+	int GetPay() const
+	{
+		return salary;
+	}
+
+	void ShowSalaryInfo() const
+	{
+		ShowYourName();
+		cout<<"salary: "<<GetPay()<<endl<<endl;
+	}
+};
+
+// 고용인의 유도클래스(임시직)
+class TemporaryWorker : public Employee
+{
+private:
+	int WorkTime;
+	int payPerHour;
+public:
+	TemporaryWorker(char * name, int pay)
+		: Employee(name), WorkTime(0), payPerHour(pay)
+	{}
+
+	void AddWorkTime(int time)
+	{
+		WorkTime += time;
+	}
+	int GetPay() const
+	{
+		return WorkTime * payPerHour;
+	}
+	void ShowSalaryInfo() const
+	{
+		ShowYourName();
+		cout<<"salary : "<<GetPay()<<endl<<endl;
+	}
+};
+
+// 정규직의 유도클래스(영업직)
+class SalesWorker : public PermanentWorker
+{
+private:
+	int salesResult;
+	double bonusRatio;
+public:
+	SalesWorker(char * name, int money, double ratio)
+		: PermanentWorker(name, money), salesResult(0), bonusRatio(ratio)
+	{ }
+
+	void AddSalesResult(int value)
+	{
+		salesResult += value;
+	}
+
+	int GetPay() const
+	{
+		return PermanentWorker::GetPay()
+			+ (int)(salesResult * bonusRatio);
+	}
+
+	void ShowSalaryInfo() const
+	{
+		ShowYourName();
+		cout<<"salary : "<<GetPay()<<endl<<endl;
+	}
+};
+
+namespace RISK_LEVEL
+{
+	enum { RISK_A = 30, RISK_B = 20, RISK_C = 10 };
+}
+
+// 영업직의 유도클래스(특수 영업직)
+class ForeignSaleWorker : public SalesWorker
+{
+private:
+	const int riskLevel;
+public:
+	ForeignSaleWorker(char * name, int money, double ratio, int risk)
+		: SalesWorker(name, money, ratio), riskLevel(risk)
+	{}
+	int GetriskPay() const
+	{
+		return (int)(SalesWorker::GetPay() * (riskLevel/100.0));
+	}
+	int GetPay() const
+	{
+		return SalesWorker::GetPay() + GetriskPay();
+	}
+
+	void ShowSalaryInfo() const
+	{
+		ShowYourName();
+		cout<<"salary : "<<SalesWorker::GetPay()<<endl;
+		cout<<"risk pay: "<<GetriskPay()<<endl;
+		cout<<"sum : "<<GetPay()<<endl<<endl;
+	}
+
+};
+
+//  기능 영역으로 핸들러클래스 or  컨트롤 클래스 
+class EmployeeHandler
+{
+private:
+	Employee* empList[50];
+	int empNum;
+public:
+	EmployeeHandler() : empNum(0)
+	{}
+
+	void AddEmployee(Employee* emp)
+	{
+		empList[empNum++] = emp;
+	}
+
+	void ShowAllSalaryInfo() const
+	{
+
+		for(int i=0; i<empNum; i++)
+			empList[i]->ShowSalaryInfo();
+
+	}
+
+	void ShowTotalSalary() const
+	{
+		int sum = 0;
+
+		for(int i=0; i<empNum; i++)
+			sum += empList[i]->GetPay();
+
+		cout<<"salary sum: "<<sum<<endl;
+	}
+
+	~EmployeeHandler()
+	{
+		for(int i =0; i<empNum; i++)
+			delete empList[i];
+	}
+};
+
+// 메인 함수
+int main(void)
+{
+	// 핸들러 클래스 객체 생성
+	EmployeeHandler handler;
+
+	//// 정규직 등록
+	//handler.AddEmployee(new PermanentWorker("KIM", 1000));
+	//handler.AddEmployee(new PermanentWorker("LEE", 1500));
+
+	//// 임시직 등록
+	//TemporaryWorker* alba = new TemporaryWorker("Jung", 700);
+	//alba->AddWorkTime(5);
+	//handler.AddEmployee(alba);
+
+	//// 영업직 등록
+	//SalesWorker* seller = new SalesWorker("Hong", 1000, 0.1);
+	//seller->AddSalesResult(7000);
+	//handler.AddEmployee(seller);
+
+	// 특수 영업직 등록
+	ForeignSaleWorker * fseller1 = new ForeignSaleWorker("Hong", 1000, 0.1, RISK_LEVEL::RISK_A);
+	fseller1->AddSalesResult(7000);
+	handler.AddEmployee(fseller1);
+
+	ForeignSaleWorker * fseller2 = new ForeignSaleWorker("Yoon", 1000, 0.1, RISK_LEVEL::RISK_B);
+	fseller2->AddSalesResult(7000);
+	handler.AddEmployee(fseller2);
+
+	ForeignSaleWorker * fseller3 = new ForeignSaleWorker("LEE", 1000, 0.1, RISK_LEVEL::RISK_C);
+	fseller3->AddSalesResult(7000);
+	handler.AddEmployee(fseller3);
+
+	// 이번달 지불할 급여 정보
+	handler.ShowAllSalaryInfo();
+
+	//// 지불할 급여의 총합
+	//handler.ShowTotalSalary();
+
+	return 0;
+}
