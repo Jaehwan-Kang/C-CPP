@@ -1,9 +1,10 @@
-#include "stdafx.h"
 #include <iostream>
+#include <cstring>
 
 /*
 	윤성우의 열혈 C++ 프로그래밍
 	OOP 단계별 프로젝트 v.01
+	
 */
 
 using namespace std;
@@ -15,7 +16,6 @@ void InMoney(void);		// 입 금
 void OutMoney(void);	// 출 금
 void IdInfo(void);		// 계좌 정보 출력
 
-
 // 고객 리스트 저장 영역 
 typedef struct
 {
@@ -26,7 +26,6 @@ typedef struct
 
 Account accArr[100];			// Account 고객리스트용 배열 선언
 int accNum=0;					// Account 수
-
 
 // 메뉴 출력
 void MenuList(void)
@@ -70,7 +69,7 @@ void InMoney(void)
 	int id;
 
 	cout<<"[입 금]"<<endl;
-	cout<<"계좌ID : "<<endl;
+	cout<<"계좌ID : ";
 	cin>>id;
 	cout<<"입금액 : "<<endl;
 	cin>>money;
@@ -95,7 +94,7 @@ void OutMoney(void)
 	int id;
 
 	cout<<"[출 금]"<<endl;
-	cout<<"계좌ID : "<<endl;
+	cout<<"계좌ID : ";
 	cin>>id;
 	cout<<"출금액 : "<<endl;
 	cin>>money;

@@ -391,68 +391,68 @@ int main(void)
 //	return 0;
 //}
 
-/// 04-3-2
-using namespace std;
-
-namespace COMP_POS
-{
-	enum { CLERK, SENIOR, ASSIST, MANAGER };
-
-	void ShowPositionInfo(int pnum)
-	{
-		switch(pnum)
-		{
-		case CLERK:
-			cout<<"사원"<<endl;
-			break;
-		case SENIOR:
-			cout<<"주임"<<endl;
-			break;
-		case ASSIST:
-			cout<<"대리"<<endl;
-			break;
-		case MANAGER:
-			cout<<"과장"<<endl;
-		}
-	}
-}
-
-class NameCard
-{
-private:
-	char * name;
-	char * company;
-	char * phone;
-	int position;
-
-public:
-	NameCard(char * _name, char * _company, char * _phone, int pnum)
-		: position(pnum)
-	{
-		name = new char[strlen(_name)+1];
-		company = new char[strlen(_company)+1];
-		phone = new char[strlen(_phone)+1];
-		strcpy(name, _name);
-		strcpy(company, _company);
-		strcpy(phone, _phone);
-	}
-
-	void ShowNameCardInfo()
-	{
-		cout<<"이름 : "<<name<<endl;
-		cout<<"회사 : "<<company<<endl;
-		cout<<"번호 : "<<phone<<endl;
-		cout<<"직급 : "; COMP_POS::ShowPositionInfo(position);
-		cout<<endl;
-	}
-
-	~NameCard()
-	{
-		delete []name;
-		delete []company;
-		delete []phone;
-	}
-};
+/// 04-3-2 
+//using namespace std;
+//
+//namespace COMP_POS
+//{
+//	enum { CLERK, SENIOR, ASSIST, MANAGER };
+//
+//	void ShowPositionInfo(int pnum)
+//	{
+//		switch(pnum)
+//		{
+//		case CLERK:
+//			cout<<"사원"<<endl;
+//			break;
+//		case SENIOR:
+//			cout<<"주임"<<endl;
+//			break;
+//		case ASSIST:
+//			cout<<"대리"<<endl;
+//			break;
+//		case MANAGER:
+//			cout<<"과장"<<endl;
+//		}
+//	}
+//}
+//
+//class NameCard
+//{
+//private:
+//	char * name;
+//	char * company;
+//	char * phone;
+//	int position;
+//
+//public:
+//	NameCard(char * _name, char * _company, char * _phone, int pnum)
+//		: position(pnum)
+//	{
+//		name = new char[strlen(_name)+1];
+//		company = new char[strlen(_company)+1];
+//		phone = new char[strlen(_phone)+1];
+//		strcpy(name, _name);
+//		strcpy(company, _company);
+//		strcpy(phone, _phone);
+//	}
+//
+//	void ShowNameCardInfo()
+//	{
+//		cout<<"이름 : "<<name<<endl;
+//		cout<<"회사 : "<<company<<endl;
+//		cout<<"번호 : "<<phone<<endl;
+//		cout<<"직급 : "; COMP_POS::ShowPositionInfo(position);
+//		cout<<endl;
+//	}
+//
+//	~NameCard()
+//	{
+//		delete []name;
+//		delete []company;
+//		delete []phone;
+//	}
+//};
 
 
 
@@ -464,5 +464,98 @@ public:
 //	manClerk.ShowNameCardInfo();
 //	manSENIOR.ShowNameCardInfo();
 //	manAssist.ShowNameCardInfo();
+//	return 0;
+//}
+
+
+// 05-1
+//using namespace std;
+//
+//namespace COMP_POS
+//{
+//	enum { CLERK, SENIOR, ASSIST, MANAGER };
+//
+//	void ShowPositionInfo(int pnum)
+//	{
+//		switch(pnum)
+//		{
+//		case CLERK:
+//			cout<<"사원"<<endl;
+//			break;
+//		case SENIOR:
+//			cout<<"주임"<<endl;
+//			break;
+//		case ASSIST:
+//			cout<<"대리"<<endl;
+//			break;
+//		case MANAGER:
+//			cout<<"과장"<<endl;
+//		}
+//	}
+//}
+//
+//class NameCard
+//{
+//private:
+//	char * name;
+//	char * company;
+//	char * phone;
+//	int position;
+//
+//public:
+//	NameCard(char * _name, char * _company, char * _phone, int pnum)
+//		: position(pnum)
+//	{
+//		name = new char[strlen(_name)+1];
+//		company = new char[strlen(_company)+1];
+//		phone = new char[strlen(_phone)+1];
+//		strcpy(name, _name);
+//		strcpy(company, _company);
+//		strcpy(phone, _phone);
+//	}
+//
+//
+//	// 복사생성자 정의 :  메모리 동적할당에 의한 포인터 참조는 디폴트 복사생성자에서는 오류!!
+//	NameCard(const NameCard & copy)
+//		: position(copy.position)
+//	{
+//		name = new char[strlen(copy.name)+1];
+//		company = new char[strlen(copy.company)+1];
+//		phone = new char[strlen(copy.phone)+1];
+//		strcpy(name, copy.name);
+//		strcpy(company, copy.company);
+//		strcpy(phone, copy.phone);
+//	}
+//
+//	void ShowNameCardInfo()
+//	{
+//		cout<<"이름 : "<<name<<endl;
+//		cout<<"회사 : "<<company<<endl;
+//		cout<<"번호 : "<<phone<<endl;
+//		cout<<"직급 : "; COMP_POS::ShowPositionInfo(position);
+//		cout<<endl;
+//	}
+//
+//	~NameCard()
+//	{
+//		delete []name;
+//		delete []company;
+//		delete []phone;
+//	}
+//};
+//
+//
+//
+//int main(void)
+//{
+//	NameCard manClerk("Lee", "ABCEng", "010-1111-2222", COMP_POS::CLERK);
+//	NameCard copy1=manClerk;
+//
+//	NameCard manSENIOR("Hong", "OrangeEng", "010-3333-4444", COMP_POS::SENIOR);
+//	NameCard copy2=manSENIOR;
+//
+//	copy1.ShowNameCardInfo();
+//	copy2.ShowNameCardInfo();
+//	
 //	return 0;
 //}

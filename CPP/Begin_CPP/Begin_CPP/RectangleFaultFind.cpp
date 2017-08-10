@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include <iostream>
 
-#include "Point.h"
-#include "Rectangle.h"
-
-using namespace std;
+//#include "Point.h"
+//#include "Rectangle.h"
+//
+//using namespace std;
 
 
 //int main(void)
