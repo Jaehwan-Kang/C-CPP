@@ -8,6 +8,9 @@
  */
 #include "BankingCommonDecl.h"
 #include "AccountHandler.h"
+#include "Account.h"
+#include "NormalAccount.h"
+#include "HighCreditAccount.h"
 
  void AccountHandler::MenuList(void) const
 {

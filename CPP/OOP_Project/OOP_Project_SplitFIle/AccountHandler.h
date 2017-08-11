@@ -8,11 +8,7 @@
  */
  #ifndef __ACCOUNT_HANDLER_H__
  #define __ACCOUNT_HANDLER_H__
-
 #include "Account.h"
-#include "NormalAccount.h"
-#include "HighCreditAccount.h"
-
 class AccountHandler
 {
 private:
@@ -30,5 +26,4 @@ public:
     void MakeIDNormal(void);
     void MakeIDHigh(void);
 };
-
  #endif
