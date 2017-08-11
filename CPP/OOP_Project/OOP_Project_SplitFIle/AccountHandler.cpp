@@ -6,8 +6,8 @@
    - UPDATE
       2017-08-11       =>      ver 0.7
  */
-
- #include "AccountHandler.h"
+#include "BankingCommonDecl.h"
+#include "AccountHandler.h"
 
  void AccountHandler::MenuList(void) const
 {

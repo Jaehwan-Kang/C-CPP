@@ -7,7 +7,8 @@
       2017-08-11       =>      ver 0.7
  */
  
- #include "Account.h"
+#include "BankingCommonDecl.h"
+#include "Account.h"
 
  Account::Account(int id, int cash, char * name)
 	: accID(id), result(cash)

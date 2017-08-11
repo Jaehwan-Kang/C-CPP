@@ -10,6 +10,8 @@
  #define __ACCOUNT_HANDLER_H__
 
 #include "Account.h"
+#include "NormalAccount.h"
+#include "HighCreditAccount.h"
 
 class AccountHandler
 {
