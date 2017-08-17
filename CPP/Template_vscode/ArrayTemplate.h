@@ -1,3 +1,7 @@
+/*
+ TEST Comment
+*/
+
 #ifndef __ARRAY_TEMPLATE_H__
 #define __ARRAY_TEMPLATE_H__
 
