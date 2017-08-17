@@ -1185,99 +1185,99 @@ int main(void)
 // }
 
 // 11-2-2
-using namespace std;
+// using namespace std;
 
-class BoundCheckIntArray
-{
-private:
-	int * arr;
-	int arrlen;
-	BoundCheckIntArray(const BoundCheckIntArray& arr) {}
-	BoundCheckIntArray& operator=(const BoundCheckIntArray& arr) {}
+// class BoundCheckIntArray
+// {
+// private:
+// 	int * arr;
+// 	int arrlen;
+// 	BoundCheckIntArray(const BoundCheckIntArray& arr) {}
+// 	BoundCheckIntArray& operator=(const BoundCheckIntArray& arr) {}
 
-public:
-	BoundCheckIntArray(int len) : arrlen(len)
-	{
-		arr = new int[len];
-	}
+// public:
+// 	BoundCheckIntArray(int len) : arrlen(len)
+// 	{
+// 		arr = new int[len];
+// 	}
 
-	int& operator[] (int idx)
-	{
-		if(idx<0 || idx>=arrlen)
-		{
-			cout<<"Array index out of bound exception"<<endl;
-			exit(1);
-		}
-		return arr[idx];
-	}
+// 	int& operator[] (int idx)
+// 	{
+// 		if(idx<0 || idx>=arrlen)
+// 		{
+// 			cout<<"Array index out of bound exception"<<endl;
+// 			exit(1);
+// 		}
+// 		return arr[idx];
+// 	}
 
-	int operator[] (int idx) const
-	{
-		if(idx<0 || idx>=arrlen)
-		{
-			cout<<"Array index out of bound exception"<<endl;
-			exit(1);
-		}
-		return arr[idx];
-	}
+// 	int operator[] (int idx) const
+// 	{
+// 		if(idx<0 || idx>=arrlen)
+// 		{
+// 			cout<<"Array index out of bound exception"<<endl;
+// 			exit(1);
+// 		}
+// 		return arr[idx];
+// 	}
 
-	int GetArrlen() const { return arrlen; }
-	~BoundCheckIntArray() { delete []arr; }
-};
+// 	int GetArrlen() const { return arrlen; }
+// 	~BoundCheckIntArray() { delete []arr; }
+// };
 
-typedef BoundCheckIntArray* BoundCheckIntArrayPTR;
+// typedef BoundCheckIntArray* BoundCheckIntArrayPTR;
 
-class BoundCheck2DIntArray
-{
-private:
-	BoundCheckIntArray **arr;
-	int arrlen;
-	BoundCheck2DIntArray(const BoundCheck2DIntArray& arr) {}
-	BoundCheck2DIntArray& operator=(const BoundCheck2DIntArray& arr) {}
+// class BoundCheck2DIntArray
+// {
+// private:
+// 	BoundCheckIntArray **arr;
+// 	int arrlen;
+// 	BoundCheck2DIntArray(const BoundCheck2DIntArray& arr) {}
+// 	BoundCheck2DIntArray& operator=(const BoundCheck2DIntArray& arr) {}
 
-public:
-	BoundCheck2DIntArray(int col, int row) : arrlen(col)
-	{
-		arr = new BoundCheckIntArrayPTR[col];
-		for(int i=0; i<col; i++)
-			arr[i] = new BoundCheckIntArray(row);
-	}
+// public:
+// 	BoundCheck2DIntArray(int col, int row) : arrlen(col)
+// 	{
+// 		arr = new BoundCheckIntArrayPTR[col];
+// 		for(int i=0; i<col; i++)
+// 			arr[i] = new BoundCheckIntArray(row);
+// 	}
 
-	BoundCheckIntArray& operator[] (int idx)
-	{
-		if(idx<0 || idx>=arrlen)
-		{
-			cout<<"Array index out of bound exception"<<endl;
-			exit(1);
-		}
-		return *(arr[idx]);
-	}
+// 	BoundCheckIntArray& operator[] (int idx)
+// 	{
+// 		if(idx<0 || idx>=arrlen)
+// 		{
+// 			cout<<"Array index out of bound exception"<<endl;
+// 			exit(1);
+// 		}
+// 		return *(arr[idx]);
+// 	}
 
-	~BoundCheck2DIntArray()
-	{
-		for(int i=0; i<arrlen; i++)
-			delete arr[i];
+// 	~BoundCheck2DIntArray()
+// 	{
+// 		for(int i=0; i<arrlen; i++)
+// 			delete arr[i];
 
-		delete []arr;			
-	}
-};
+// 		delete []arr;			
+// 	}
+// };
 
-int main(void)
-{
-	BoundCheck2DIntArray arr2d(3, 4);
+// int main(void)
+// {
+// 	BoundCheck2DIntArray arr2d(3, 4);
 
-	for(int n=0; n<3; n++)
-		for(int m=0; m<4; m++)
-			arr2d[n][m] = n + m;
+// 	for(int n=0; n<3; n++)
+// 		for(int m=0; m<4; m++)
+// 			arr2d[n][m] = n + m;
 
-	for(int n=0; n<3; n++)
-	{
-		for(int m=0; m<4; m++)
-			cout<<arr2d[n][m]<<' ';		
-			cout<<endl;
-	}
-	return 0;
-}
+// 	for(int n=0; n<3; n++)
+// 	{
+// 		for(int m=0; m<4; m++)
+// 			cout<<arr2d[n][m]<<' ';		
+// 			cout<<endl;
+// 	}
+// 	return 0;
+// }
 
 // 13-1-1
 //using namespace std;
@@ -1317,33 +1317,104 @@ int main(void)
 //	return 0;
 //}
 
-// 13-1-2
+// // 13-1-2
+// using namespace std;
+
+// template <class R>
+
+// R SumArray(R arr[], int len)
+// {
+// 	R sum = 0;
+// 	for(int i=0; i<len; i++)
+// 		sum += arr[i];
+// 	return sum;
+// }
+
+// int main(void)
+// {
+// 	int arr1[] = {10, 20, 30};
+// 	cout<< SumArray(arr1, sizeof(arr1)/sizeof(int))<<endl;
+
+// 	double arr2[] = { 10.3, 20.4, 30.5 };
+// 	cout<< SumArray(arr2, sizeof(arr2)/sizeof(double))<<endl;
+
+// 	return 0;
+// }
+
+// 13-2
 using namespace std;
 
-template <class R>
+class Point
+{
+private:
+	int xpos, ypos;
+public:
+	Point(int x=0, int y=0) : xpos(x), ypos(y)
+	{
+		cout<<"Point 객체 생성"<<endl;
+	}
 
-//int SumArray(int arr[], int len)
+	~Point()
+	{
+		cout<<"Point 객체 소멸"<<endl;
+	}
+
+	void SetPos(int x, int y)
+	{
+		xpos = x;
+		ypos = y;
+	}
+
+	friend ostream& operator<<(ostream& os, const Point& pos);
+};
+
+ostream& operator<<(ostream& os, const Point& pos)
+{
+	
+	os<<"[ "<<pos.xpos<<", "<<pos.ypos<<" ]"<<endl;
+	return os;
+}
+//
+class SmartPtr
+{
+private:
+	Point * posptr;
+public:
+	SmartPtr(Point * ptr) : posptr(ptr) { }
+
+	Point& operator*() const
+	{
+		return *posptr;
+	}
+
+	Point* operator->() const
+	{
+		return posptr;
+	}
+	
+	~SmartPtr()
+	{
+		delete posptr;
+	}
+};
+//
+//int main(void)
 //{
-//	int sum = 0;
-//	for(int i=0; i<len; i++)
-//		sum += arr[i]
-//	return sum;
+//	SmartPtr sptr1(new Point(1, 2));
+//	SmartPtr sptr2(new Point(2, 3));
+//	SmartPtr sptr3(new Point(4, 5));
+//	
+//	cout<<*sptr1;
+//	cout<<*sptr2;
+//	cout<<*sptr3;
+//
+//	sptr1->SetPos(10, 20);
+//	sptr2->SetPos(30, 40);
+//	sptr3->SetPos(50, 60);
+//
+//	cout<<*sptr1;
+//	cout<<*sptr2;
+//	cout<<*sptr3;
+//
+//	return 0;
 //}
-R SumArray(R arr[], int len)
-{
-	R sum = 0;
-	for(int i=0; i<len; i++)
-		sum += arr[i];
-	return sum;
-}
-
-int main(void)
-{
-	int arr1[] = {10, 20, 30};
-	cout<< SumArray(arr1, sizeof(arr1)/sizeof(int))<<endl;
-
-	double arr2[] = { 10.3, 20.4, 30.5 };
-	cout<< SumArray(arr2, sizeof(arr2)/sizeof(double))<<endl;
-
-	return 0;
-}

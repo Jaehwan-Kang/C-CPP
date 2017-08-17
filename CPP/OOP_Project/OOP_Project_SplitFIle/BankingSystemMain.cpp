@@ -5,10 +5,11 @@
 
    - UPDATE
       2017-08-11       =>      ver 0.7
+      2017-08-17        ver 0.10   REMOVE AccountArray.h ,  AccountArray.cpp	  
  */
 
  #include "BankingCommonDecl.h"
- #include "AccountHandler.h"
+ //#include "AccountHandler.h"
 
 int main(void)
 {
