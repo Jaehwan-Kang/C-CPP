@@ -5,6 +5,7 @@
 
    - UPDATE
       2017-08-11       =>      ver 0.7
+	  2017-08-16        =>      ver 0.8    Add Acount& operator+() function
  */
  
 #include "BankingCommonDecl.h"
@@ -24,6 +25,17 @@ Account::Account(const Account& ref)
 	strcpy(custname, ref.custname);
 }
 
+Account& Account::operator+(const Acceount& ref)
+{
+	accID = ref.accID;
+	result = ref.result;
+
+	delete []custname;
+	custname = new char[strlen(ref.custname) + 1];
+	strcpy(custname, ref.custname);
+
+	return *this;
+}
 int Account::GetID() const
 {
 	return accID;

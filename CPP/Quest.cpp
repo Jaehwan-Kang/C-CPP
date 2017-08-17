@@ -1278,3 +1278,72 @@ int main(void)
 	}
 	return 0;
 }
+
+// 13-1-1
+//using namespace std;
+//
+//class Point
+//{
+//private:
+//	int xpos, ypos;
+//public:
+//	Point(int x=0, int y=0) : xpos(x), ypos(y){}
+//
+//	void ShowPosition() const
+//	{
+//		cout<<"[ "<<xpos<<", "<<ypos<<" ]"<<endl;
+//	}
+//};
+//
+//template <class SW>
+//
+//void SwapData(SW& data1, SW& data2)
+//{
+//	SW temp = data1;
+//	data1 = data2;
+//	data2 = temp;
+//}
+//
+//int main(void)
+//{
+//	Point pos1(3, 5);
+//	Point pos2(10, 20);
+//	
+//	SwapData(pos1, pos2);
+//
+//	pos1.ShowPosition();
+//	pos2.ShowPosition();
+//
+//	return 0;
+//}
+
+// 13-1-2
+using namespace std;
+
+template <class R>
+
+//int SumArray(int arr[], int len)
+//{
+//	int sum = 0;
+//	for(int i=0; i<len; i++)
+//		sum += arr[i]
+//	return sum;
+//}
+R SumArray(R arr[], int len)
+{
+	R sum = 0;
+	for(int i=0; i<len; i++)
+		sum += arr[i];
+	return sum;
+}
+
+int main(void)
+{
+	int arr1[] = {10, 20, 30};
+	cout<< SumArray(arr1, sizeof(arr1)/sizeof(int))<<endl;
+
+	double arr2[] = { 10.3, 20.4, 30.5 };
+	cout<< SumArray(arr2, sizeof(arr2)/sizeof(double))<<endl;
+
+	return 0;
+}
